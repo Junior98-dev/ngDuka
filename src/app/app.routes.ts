@@ -4,7 +4,7 @@ import path from 'node:path';
 export const routes: Routes = [
     {
         path: '',
-        title: 'Home',
+        title: 'ngDuka',
         loadComponent: () => import('./pages/home/home.component'),
     },
     {
