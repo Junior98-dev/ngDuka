@@ -1,6 +1,9 @@
 <main>
+  @if (loading()) {
+  <h3>Chargement des produits encours ...</h3>
+  }@else {
   <header>
-    <h3>{{sectionTitle()}}</h3>
+    <h3>{{ sectionTitle() }}</h3>
     <a [routerLink]="'/products/' + this.query()" class="action">
       <span>Voir plus</span>
       <svg
@@ -35,4 +38,5 @@
     </p>
     }
   </div>
+  }
 </main>
