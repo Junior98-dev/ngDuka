@@ -9,7 +9,8 @@ export class ApiService {
   API = 'https://fakestoreapi.com';
   http = inject(HttpClient); 
 
-  getProductsByCategory(category: string) {
-    return this.http.get<Product[]>(`${this.API}/products/category/${category}`);
+  getProductsByCategory(category: string, limitCount?: number) {
+    const queryParams = limitCount ? `?limit=${limitCount}` : '';
+    return this.http.get<Product[]>(`${this.API}/products/category/${category}${queryParams}`);
   }
 }
