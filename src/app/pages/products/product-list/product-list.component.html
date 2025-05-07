@@ -1,7 +1,7 @@
 <main>
   <header>
     <h3>{{sectionTitle()}}</h3>
-    <a routerLink="/" class="action">
+    <a [routerLink]="'/products/' + this.query()" class="action">
       <span>Voir plus</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
