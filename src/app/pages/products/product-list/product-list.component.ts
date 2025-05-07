@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ApiService } from '../../../core/services/api.service';
 import { RouterLink } from '@angular/router';
@@ -12,9 +12,11 @@ import { RouterLink } from '@angular/router';
 export class ProductListComponent implements OnInit {
   products?: Product[];
   api = inject(ApiService);
-
+  sectionTitle = input.required<string>();
+  query = input.required<string>();
+  queryLimitCount = input<number>();
   ngOnInit(): void {
-    this.api.getProductsByCategory('electronics', 4).subscribe((products)=>{
+    this.api.getProductsByCategory(this.query(), this.queryLimitCount()).subscribe((products)=>{
       this.products = products;
     });
   }
