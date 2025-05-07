@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
+import { ProductListComponent } from "../products/product-list/product-list.component";
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ProductListComponent],
   template: `
     <section align="center" class="hero-container">
       <h2>Bienvenue sur ngDuka</h2>
       <h3>Une boutique en ligne pour demo http client en Angular</h3>
       <input placeholder="Recherche dans ngSoko" type="text" />
     </section>
+    <app-product-list/>
   `,
   styles: `
     .hero-container {
