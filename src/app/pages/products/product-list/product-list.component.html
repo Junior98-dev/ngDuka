@@ -1,1 +1,39 @@
-<p>product-list works!</p>
+<main>
+  <header>
+    <h3>Electroniques</h3>
+    <a routerLink="/" class="action">
+      <span>Voir plus</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#e3e3e3"
+      >
+        <path
+          d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z"
+        />
+      </svg>
+    </a>
+  </header>
+
+  <div class="product-list-container">
+    @for (product of products; track $index) {
+    <a routerLink="" class="product-card">
+      <img [src]="product.image" alt="image du produit" />
+      <div class="product-info">
+        <p class="truncate">{{ product.title }}</p>
+        <p class="price">
+          <b>$ {{ product.price }}</b>
+        </p>
+      </div>
+    </a>
+    }@empty {
+    <p align="center">
+      Oups! Aucun produit trouvé.
+      <br />
+      Vérifiez votre connexion Internet.
+    </p>
+    }
+  </div>
+</main>
