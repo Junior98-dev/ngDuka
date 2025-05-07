@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   api = inject(ApiService);
 
   ngOnInit(): void {
-    this.api.getProductsByCategory('electronics').subscribe((products)=>{
+    this.api.getProductsByCategory('electronics', 4).subscribe((products)=>{
       this.products = products;
     });
   }
