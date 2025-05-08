@@ -1,8 +1,9 @@
 import { Component, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ApiService } from '../../../core/services/api.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-list',
@@ -18,11 +19,14 @@ export class ProductListComponent implements OnInit , OnDestroy{
   query = input.required<string>();
   queryLimitCount = input<number>();
   productsSub?: Subscription;
+  private router = inject(Router);
+  private title = inject(Title);
   ngOnInit(): void {
     this.productsSub = this.api
       .getProductsByCategory(this.query(), this.queryLimitCount())
       .subscribe((products) => {
         this.products = products;
+        this.title.setTitle(`${products[0]}`);
         this.loading.set(false);
       });
   }
