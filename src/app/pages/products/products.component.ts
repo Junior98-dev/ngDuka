@@ -6,7 +6,8 @@ import { ProductListComponent } from "./product-list/product-list.component";
   imports: [ProductListComponent],
   template: `
     <main class="max-width">
-     <app-product-list [sectionTitle]="category()" [query]="category()" /> 
+     <app-product-list [sectionTitle]="category()" [query]="category()" /> <br />
+     <app-product-list sectionTitle="Vous aimerez peut-être aussi ceci" [query]="'allProducts'" /> 
     </main>
   `,
   styles: ``

@@ -1,8 +1,15 @@
-import { Component, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ApiService } from '../../../core/services/api.service';
 import { Router, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,7 +18,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
-export class ProductListComponent implements OnInit , OnDestroy{
+export class ProductListComponent implements OnInit, OnDestroy {
   loading = signal(true);
   products?: Product[];
   api = inject(ApiService);
@@ -22,15 +29,17 @@ export class ProductListComponent implements OnInit , OnDestroy{
   private router = inject(Router);
   private title = inject(Title);
   ngOnInit(): void {
-    this.productsSub = this.api
-      .getProductsByCategory(this.query(), this.queryLimitCount())
-      .subscribe((products) => {
-        this.products = products;
-        if(this.router.url.includes('products')){
-          this.title.setTitle(`${products[0].category} - ngDuka`);
-        }
-        this.loading.set(false);
-      });
+    const products$ =
+      this.query() === 'allProducts'
+        ? this.api.getProducts()
+        : this.api.getProductsByCategory(this.query(), this.queryLimitCount());
+    this.productsSub = products$.subscribe((products) => {
+      this.products = products;
+      if (this.router.url.includes('products')) {
+        this.title.setTitle(`${products[0].category} - ngDuka`);
+      }
+      this.loading.set(false);
+    });
   }
   ngOnDestroy(): void {
     this.productsSub?.unsubscribe();
