@@ -8,6 +8,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     <main class="max-width">
       <app-product-list [sectionTitle]="category()" [query]="category()" />
       <br />
+      <br />
+      <br />
       <app-product-list
         sectionTitle="Vous aimerez peut-être aussi ceci"
         [query]="'allProducts'"
