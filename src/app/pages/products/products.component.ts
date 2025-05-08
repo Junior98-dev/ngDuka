@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { ProductListComponent } from "./product-list/product-list.component";
 
 @Component({
   selector: 'app-products',
-  imports: [],
+  imports: [ProductListComponent],
   template: `
-    <p>
-      products works!
-    </p>
+    <main class="max-width">
+     <app-product-list [sectionTitle]="category()" [query]="category()" /> 
+    </main>
   `,
   styles: ``
 })
 export default class ProductsComponent {
-
+  category = input('category');
 }
