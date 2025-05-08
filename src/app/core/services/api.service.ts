@@ -3,14 +3,20 @@ import { inject, Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   API = 'https://fakestoreapi.com';
-  http = inject(HttpClient); 
+  http = inject(HttpClient);
 
   getProductsByCategory(category: string, limitCount?: number) {
     const queryParams = limitCount ? `?limit=${limitCount}` : '';
-    return this.http.get<Product[]>(`${this.API}/products/category/${category}${queryParams}`);
+    return this.http.get<Product[]>(
+      `${this.API}/products/category/${category}${queryParams}`
+    );
   }
+
+  getProducts = () => {
+    return this.http.get<Product[]>(`${this.API}/products/`);
+  };
 }
