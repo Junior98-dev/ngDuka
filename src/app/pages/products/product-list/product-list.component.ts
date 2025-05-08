@@ -26,7 +26,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
       .getProductsByCategory(this.query(), this.queryLimitCount())
       .subscribe((products) => {
         this.products = products;
-        this.title.setTitle(`${products[0].category} - ngDuka`);
+        if(this.router.url.includes('products')){
+          this.title.setTitle(`${products[0].category} - ngDuka`);
+        }
         this.loading.set(false);
       });
   }
