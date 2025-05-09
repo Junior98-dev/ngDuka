@@ -1,1 +1,13 @@
-<p>product works!</p>
+<main class="max-width">
+    @if (loading()) {
+        <h2>Chargement du produit encours ...</h2>
+    }@else {
+        <div class="product-container">
+            @if (product) {
+
+            }@else {
+                <p class="center">Aucun product trouver</p>
+            }
+        </div>
+    }
+</main>
