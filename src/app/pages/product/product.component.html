@@ -19,7 +19,7 @@
           -
         </button>
         <span
-          ><b>{{ productQty() }}</b></span
+          ><b> {{ productQty() }} </b></span
         >
         <button (click)="qtyHandling('add')" [disabled]="productQty() === 5">
           +
@@ -27,7 +27,7 @@
       </div>
       <hr />
       <span
-        ><b>Total: $ {{ product.price! * productQty() }}</b></span
+        ><b>Total: $ {{ product.price! * productQty() }} </b></span
       >
       <button>Ajouter au panier</button>
       <br />
