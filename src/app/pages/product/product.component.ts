@@ -56,7 +56,10 @@ export default class ProductComponent implements OnInit, OnDestroy {
       this.productQty.update((value) => value - 1);
     }
   }
-
+  addToCart(product: Product){
+    // Add product to cart 
+    this.api.cartProductCount.update((value) => value + 1);
+  }
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();
   }
