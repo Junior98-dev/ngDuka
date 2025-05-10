@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { Product } from '../models/product.model';
 export class ApiService {
   API = 'https://fakestoreapi.com';
   http = inject(HttpClient);
+  cartProductCount = signal(0);
 
   getProductsByCategory(category: string, limitCount?: number) {
     const queryParams = limitCount ? `?limit=${limitCount}` : '';
