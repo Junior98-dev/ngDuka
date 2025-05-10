@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ApiService } from '../../core/services/api.service';
 import { Title } from '@angular/platform-browser';
+import { ProductListComponent } from "../products/product-list/product-list.component";
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [ProductListComponent],
   templateUrl: './product.component.html',
   styles: `
     .product-container{
