@@ -18,6 +18,7 @@ export default class ProductComponent implements OnInit, OnDestroy {
   api = inject(ApiService);
   title = inject(Title);
   routeSub?: Subscription;
+  productQty = signal(1);
 
   ngOnInit(): void {
     this.routeSub = this.route.params
@@ -27,6 +28,13 @@ export default class ProductComponent implements OnInit, OnDestroy {
         this.title.setTitle(`${product.title} - ngDuka`);
         this.loading.set(false);
       });
+  }
+  qtyHandling(operation: string){
+    if(operation === 'add'){
+      this.productQty.update((value) => value + 1);
+    }else{
+      this.productQty.update((value) => value - 1);
+    }
   }
 
   ngOnDestroy(): void {
