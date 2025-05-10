@@ -9,7 +9,22 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-product',
   imports: [],
   templateUrl: './product.component.html',
-  styles: ``,
+  styles: `
+    .product-container{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 2rem auto !important;
+
+      img{
+        width: 50%;
+      }
+
+      .product-info{
+        width: 40%;
+      }
+    }
+  `,
 })
 export default class ProductComponent implements OnInit, OnDestroy {
   product?: Product;
