@@ -24,6 +24,10 @@ import { Title } from '@angular/platform-browser';
         width: 40%;
       }
     }
+    button:disabled{
+      background: grey;
+      opacity: 0.5;
+    }
   `,
 })
 export default class ProductComponent implements OnInit, OnDestroy {
@@ -44,10 +48,10 @@ export default class ProductComponent implements OnInit, OnDestroy {
         this.loading.set(false);
       });
   }
-  qtyHandling(operation: string){
-    if(operation === 'add'){
+  qtyHandling(operation: string) {
+    if (operation === 'add') {
       this.productQty.update((value) => value + 1);
-    }else{
+    } else {
       this.productQty.update((value) => value - 1);
     }
   }
